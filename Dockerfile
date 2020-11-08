@@ -3,8 +3,8 @@
 #
 # https://github.com/yep/usergrid-cassandra
 # 
-
-FROM debian:bullseye-slim
+# Cassandra is packaged with java 14 in the repos, the java version of this image must match that
+FROM akrahl/usergrid-java-jre
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV CASSANDRA_VERSION 2.1.22
