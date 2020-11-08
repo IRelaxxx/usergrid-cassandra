@@ -7,7 +7,7 @@
 FROM yep1/usergrid-java
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV CASSANDRA_VERSION 2.1.12
+ENV CASSANDRA_VERSION 2.1.22
 WORKDIR /root
 
 # add datastax repository and install cassandra
