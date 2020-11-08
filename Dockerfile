@@ -15,7 +15,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* 
 
-RUN mkdir /usr/share/man/man1/
+# RUN mkdir /usr/share/man/man1/
 
 # install cassandra
 RUN echo "deb https://downloads.apache.org/cassandra/debian 21x main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list && \
