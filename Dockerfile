@@ -4,7 +4,7 @@
 # https://github.com/yep/usergrid-cassandra
 # 
 
-FROM yep1/usergrid-java
+FROM akrahl/usergrid-java-jre
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV CASSANDRA_VERSION 2.1.22
