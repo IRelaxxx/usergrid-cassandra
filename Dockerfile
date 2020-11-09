@@ -1,12 +1,26 @@
-#
-# Cassandra Dockerfile for Usergrid
-#
-# https://github.com/yep/usergrid-cassandra
-# 
-# Cassandra is packaged with java 14 in the repos, the java version of this image must match that
-FROM akrahl/usergrid-java-jre
+FROM debian:buster-slim
 
 ENV DEBIAN_FRONTEND noninteractive
+
+RUN mkdir /usr/share/man/man1/
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends software-properties-common curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+RUN echo 'Europe/Berlin' > /etc/timezone && \
+    dpkg-reconfigure tzdata
+    
+RUN apt-add-repository 'deb http://security.debian.org/debian-security stretch/updates main' && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends openjdk-8-jre-headless && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+
 ENV CASSANDRA_VERSION 2.1.22
 WORKDIR /root
 
@@ -24,6 +38,8 @@ RUN echo "deb https://downloads.apache.org/cassandra/debian 21x main" | tee -a /
     apt-get install -yq --no-install-recommends cassandra=${CASSANDRA_VERSION} net-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+    
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
 # apt-get update -o Dir::Etc::sourcelist="sources.list.d/cassandra.sources.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && \
 # persist database and logs between container starts
