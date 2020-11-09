@@ -25,7 +25,7 @@ ENV CASSANDRA_VERSION 2.1.22
 WORKDIR /root
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends software-properties-common curl gnupg procps && \
+    apt-get install -y --no-install-recommends gnupg procps && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* 
 
