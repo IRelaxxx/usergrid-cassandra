@@ -41,7 +41,6 @@ RUN echo "deb https://downloads.apache.org/cassandra/debian 21x main" | tee -a /
     
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
-# apt-get update -o Dir::Etc::sourcelist="sources.list.d/cassandra.sources.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && \
 # persist database and logs between container starts
 VOLUME ["/var/lib/cassandra", "/var/log/cassandra"]
 
