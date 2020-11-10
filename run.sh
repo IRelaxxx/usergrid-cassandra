@@ -35,4 +35,9 @@ sed -i -e "s/^\(rpc_address:\).*/\1 ${CASSANDRA_RPC_ADDRESS}/" ${CONFIG_FILE}
 sed -i -e "s/^\(# \)\(broadcast_rpc_address:\).*/\2 ${CASSANDRA_BROADCAST_RPC_ADDRESS}/" ${CONFIG_FILE}
 sed -i -e "s/^\([ ]*- seeds:\).*/\1 ${CASSANDRA_SEEDS}/" ${CONFIG_FILE}
 
+ENV_FILE=/etc/cassandra/cassandra-env.sh
+
+sed -i -e 's/#MAX_HEAP_SIZE="4G"/MAX_HEAP_SIZE="1G"/' ${ENV_FILE}
+sed -i -e 's/#HEAP_NEWSIZE="800M"/HEAP_NEWSIZE="200M"/' ${ENV_FILE}
+
 start-stop-daemon --chuid cassandra:cassandra --exec /usr/sbin/cassandra --start -- -f
