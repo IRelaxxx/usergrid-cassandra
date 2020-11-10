@@ -33,5 +33,4 @@ EXPOSE 9042 9160
 COPY run.sh /root/run.sh 
 
 # set default command when starting container with "docker run"
-CMD tail -f /dev/null
-#CMD /root/run.sh
+CMD /root/run.sh
